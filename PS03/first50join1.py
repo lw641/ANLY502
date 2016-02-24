@@ -57,7 +57,7 @@ class First50Join(MRJob):
     def reducer_final(self):
         """Output the lowest 50"""
         for (datetime, country, line) in self.lowest:
-            yield "CHANGEME", [CHANGEME]
+            yield "First50Geolocated", [datetime, country, line]
 
     # Let MapReduce do the sorting this time!
     # All of the keys are the same, so just take the first 50 values...
