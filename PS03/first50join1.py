@@ -12,6 +12,7 @@ from weblog import Weblog  # imports class defined in weblog.py
 
 
 class First50Join(MRJob):
+    SORT_VALUES = True 
     def mapper(self, _, line):
         # Is this a weblog file, or a MaxMind GeoLite2 file?
         filename = mrjob.compat.jobconf_from_env("map.input.file")
