@@ -10,7 +10,6 @@ import os
 from mrjob.step import MRStep
 import heapq
 
-TOPN=10
 
 class FwikiMaxmindJoin(MRJob):
     def mapper(self, _, line):
