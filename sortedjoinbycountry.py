@@ -54,11 +54,11 @@ class FwikiMaxmindJoin(MRJob):
 
     def top10_mapper(self, word, count):
 	if word!="N/A":
-		yield "Top10", (word,count) 
+		yield "", (word,count) 
 
     def top10_reducer(self, key, values):
-	for i in heapq.nlargest(TOPN,values):
-		yield "Top10",i
+	for i in sorted(values, reverse=True):
+		yield "",i
 
     def steps(self):
         return [
