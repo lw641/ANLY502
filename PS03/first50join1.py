@@ -76,4 +76,4 @@ class First50Join(MRJob):
 
 
 if __name__ == "__main__":
-    First50Join1.run()
+    First50Join.run()
