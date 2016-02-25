@@ -57,7 +57,7 @@ class FwikiMaxmindJoin(MRJob):
 		yield "", (word,count) 
 
     def top10_reducer(self, key, values):
-	for i in sorted(values, reverse=True):
+	for i in sorted(values, reverse=False):
 		yield "",i
 
     def steps(self):
