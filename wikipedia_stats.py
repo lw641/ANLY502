@@ -9,7 +9,7 @@ class WikipediaStats(MRJob):
         filename = mrjob.compat.jobconf_from_env("map.input.file")
         if "freebase-wex-2009-01-12-articles.tsv" in filename:
             fields = line.split("\t")
-            time1 = field[2]
+            time1 = fields[2]
             time1 = time1.split()
             time2 = time1[0]
             time2 = time2.split("-")
