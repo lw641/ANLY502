@@ -32,7 +32,7 @@ class WikipediaStats(MRJob):
                    reducer = self.reducer),
 
             MRStep(mapper = self.mapper_sort,
-                   reducer = self.reducer_count) ]
+                   reducer = self.reducer_sort) ]
 
 
 
