@@ -8,12 +8,12 @@ class WikipediaStats(MRJob):
     def mapper(self, _, line):
         filename = mrjob.compat.jobconf_from_env("map.input.file")
         if "freebase-wex-2009-01-12-articles.tsv" in filename:
-        fields = line.split("\t")
-        time1 = field[2]
-        time1 = time1.split()
-        time2 = time1[0]
-        time2 = time2.split("-")
-        time = int(time2[0] + time2[1])
+            fields = line.split("\t")
+            time1 = field[2]
+            time1 = time1.split()
+            time2 = time1[0]
+            time2 = time2.split("-")
+            time = int(time2[0] + time2[1])
         yield time, 1
 
     def reducer(self, key, value):
@@ -24,7 +24,7 @@ class WikipediaStats(MRJob):
 
     def reducer_sort(self, keys, values):
     	for i in sorted(values):
-        yield keys, i
+            yield keys, i
 
     def steps(self):
         return [
