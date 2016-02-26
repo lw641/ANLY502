@@ -20,7 +20,7 @@ class WikipediaStats(MRJob):
     	yield key, sum(value)
 
     def mapper_sort(self, keys, values):
-    	yield "", (keys, values)
+    	yield "SortDate", (keys, values)
 
     def reducer_sort(self, keys, values):
     	for i in sorted(values):
@@ -28,12 +28,8 @@ class WikipediaStats(MRJob):
 
     def steps(self):
         return [
-            MRStep(mapper = self.mapper,
-                   reducer = self.reducer),
-
-            MRStep(mapper = self.mapper_sort,
-                   reducer = self.reducer_sort) ]
-
+            MRStep(mapper = self.mapper,reducer = self.reducer),
+            MRStep(mapper = self.mapper_sort,reducer = self.reducer_sort) ]
 
 
 if __name__=="__main__":
