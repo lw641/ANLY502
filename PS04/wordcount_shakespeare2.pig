@@ -12,7 +12,7 @@ rmf sorted_words2
 
 shakespeare = LOAD 's3://gu-anly502/ps04/Shakespeare.txt' as (line:chararray);
 
-words = foreach shakespeare generate flatten(TOKENIZE(line)) as lower(word); 
+words = foreach shakespeare generate flatten(TOKENIZE(line)) as lOWER(word); 
 grouped = GROUP words by word;
 wordcount = FOREACH grouped GENERATE group, COUNT(words);
 sorted_words = ORDER wordcount BY $1 DESC; 
