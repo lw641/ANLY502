@@ -12,7 +12,7 @@ rmf sorted_words2
 
 shakespeare = LOAD 's3://gu-anly502/ps04/Shakespeare.txt' as (line:chararray);
 
-words = foreach shakespeare generate flatten(TOKENIZE(line)) as lOWER(word); 
+words = foreach shakespeare generate flatten(TOKENIZE(LOWER(line))) as word; 
 grouped = GROUP words by word;
 wordcount = FOREACH grouped GENERATE group, COUNT(words);
 sorted_words = ORDER wordcount BY $1 DESC; 
@@ -23,4 +23,4 @@ STORE sorted_words20 INTO 'sorted_words2' USING PigStorage();
  
 -- Get the results
 --
-fs -getmerge sorted_words2 wordcount_shakespeare2.txt
+fs -getmerge sorted_words2 wordcount_shakespeare.txt
