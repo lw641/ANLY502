@@ -41,8 +41,11 @@ logs_base =
      size: int, referrer: chararray, agent: chararray
      );
 
--- YOUR CODE GOES HERE
--- YOUR CODE SHOULD PUT THE RESULTS IN date_counts_sorted
+ by_date = GROUP logs BY (date);
+       date_counts = FOREACH by_date GENERATE
+           group as date,      -- the key you grouped on
+           COUNT(logs_base);   -- the number of log lines wiht this date
+       dump date_counts;
 
 store date_counts_sorted INTO 'count_by_date' USING PigStorage();
 
