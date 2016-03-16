@@ -16,7 +16,7 @@ grouped = GROUP words by word;
 wordcount = FOREACH grouped GENERATE group, COUNT(words);
 sorted_words = ORDER wordcount BY $1 DESC; 
 sorted_words20 = limit sorted_words 20; 
-
+dump sorted_words20;
 
 STORE sorted_words20 INTO 'sorted_words1' USING PigStorage();
  
