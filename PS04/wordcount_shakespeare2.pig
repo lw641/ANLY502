@@ -23,4 +23,4 @@ STORE sorted_words20 INTO 'sorted_words2' USING PigStorage();
  
 -- Get the results
 --
-fs -getmerge sorted_words2 wordcount_shakespeare.txt
+fs -getmerge sorted_words2 wordcount_shakespeare2.txt
