@@ -15,7 +15,7 @@ DEFINE EXTRACT       org.apache.pig.piggybank.evaluation.string.EXTRACT();
 -- Uncomment the data source you wish to use:
 
 -- This URL uses just one day
--- raw_logs = load 's3://gu-anly502/ps03/forensicswiki.2012-01.unzipped/access.log.2012-01-01' as (line:chararray);
+ raw_logs = load 's3://gu-anly502/ps03/forensicswiki.2012-01.unzipped/access.log.2012-01-01' as (line:chararray);
 --
 -- This URL uses another day:
 -- raw_logs = load 's3://gu-anly502/ps03/forensicswiki/access.log.2012-12-31.gz' as (line:chararray);
@@ -24,7 +24,7 @@ DEFINE EXTRACT       org.apache.pig.piggybank.evaluation.string.EXTRACT();
 -- raw_logs = load 's3://gu-anly502/ps03/forensicswiki.2012-01.unzipped/access.log.2012-01-??' as (line:chararray);
 --
 -- This URL reads all of 2012:
- raw_logs = load 's3://gu-anly502/ps03/forensicswiki.2012.txt' as (line:chararray);
+-- raw_logs = load 's3://gu-anly502/ps03/forensicswiki.2012.txt' as (line:chararray);
 
  
 -- logs_base processes each of the lines 
@@ -41,11 +41,15 @@ logs_base =
      size: int, referrer: chararray, agent: chararray
      );
 
- by_date = GROUP raw_logs BY (date);
-       date_counts = FOREACH by_date GENERATE
-           group as date,      -- the key you grouped on
-           COUNT(logs_base);   -- the number of log lines wiht this date
-       dump date_counts;
+logs  = FOREACH logs_base GENERATE ToDate(SUBSTRING(datetime_str,0,11),'dd/MMM/yyyy') AS date, host, url, size;
+logs2 = FOREACH logs      GENERATE SUBSTRING(ToString(date),0,10) AS date, host, url, size;
+by_date = GROUP logs2 BY (date);
+date_counts = FOREACH by_date GENERATE
+          group AS date,    -- the key you grouped on
+          COUNT(logs2);      -- the number of log lines wiht this date
+date_counts_sorted = ORDER date_counts BY date;
+dump date_counts_sorted;
+
 
 store date_counts_sorted INTO 'count_by_date' USING PigStorage();
 
