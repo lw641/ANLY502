@@ -37,8 +37,8 @@ logs_base =
 
 logs  = FOREACH logs_base GENERATE ToDate(SUBSTRING(datetime_str,0,11),'dd/MMM/yyyy') AS date, host, url, size;
 logs2 = FOREACH logs      GENERATE SUBSTRING(ToString(date),0,10) AS date, host, url, size;
-logs3 = FOREACH logs      GENERATE REGEX_EXTRACT_ALL(date, '(2012.*)') AS date, host, url, size;
-logs4 = FOREACH logs      GENERATE REGEX_EXTRACT_ALL(url, '(index.php\?title=|/wiki/)([^ &]*)') AS date, host, url, size;
+logs3 = FOREACH logs2     GENERATE REGEX_EXTRACT_ALL(date, '(2012.*)') AS date, host, url, size;
+logs4 = FOREACH logs3     GENERATE REGEX_EXTRACT_ALL(url, '(index.php\?title=|/wiki/)([^ &]*)') AS date, host, url, size;
 
 by_wiki = GROUP logs4 BY (url);
 wiki_counts = FOREACH by_wiki GENERATE
