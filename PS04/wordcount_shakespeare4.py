@@ -36,7 +36,7 @@ if __name__ == "__main__":
                   .map(lambda word: filter(unicode.isalpha,word)) \
                   .map(lambda x: (x, 1)) \
                   .reduceByKey(add)
-    top20counts = counts.sortBy(lambda x: x[1], ascending=False) \
+    top40counts = counts.sortBy(lambda x: x[1], ascending=False) \
                   .take(40)
 
 
