@@ -4,7 +4,7 @@
 
 -- Clear the output directory location
 --
-rmf forensicswiki_count_by_date
+rmf forensicswiki_page_top20
 
 --
 -- Map locally defined functions to the Java functions in the piggybank
@@ -48,7 +48,7 @@ wiki_counts_sorted = ORDER wiki_counts BY $1 DESC;
 wiki_counts_sorted_20 = limit wiki_counts_sorted 20;
 dump date_counts_sorted_20;
 
-store output INTO 'forensicswiki_page_top20' USING PigStorage();
+store date_counts_sorted_20 INTO 'forensicswiki_page_top20' USING PigStorage();
 
 
 -- Get the results
