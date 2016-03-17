@@ -46,9 +46,9 @@ wiki_counts = FOREACH by_wiki GENERATE
           COUNT(logs4);     
 wiki_counts_sorted = ORDER wiki_counts BY $1 DESC;
 wiki_counts_sorted_20 = limit wiki_counts_sorted 20;
-dump date_counts_sorted_20;
+dump wiki_counts_sorted_20;
 
-store date_counts_sorted_20 INTO 'forensicswiki_page_top20' USING PigStorage();
+store wiki_counts_sorted_20 INTO 'forensicswiki_page_top20' USING PigStorage();
 
 
 -- Get the results
