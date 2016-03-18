@@ -26,7 +26,7 @@ if __name__ == "__main__":
     ## Run WordCount on Spark
     ##
 
-    sc     = SparkContext( appName="Wikipedia Count" )
+    sc = SparkContext( appName="Wikipedia Count" )
     lines = sc.textFile(infile)
     counts = lines.map(lambda line: line.split('\t')[2]).map(lambda x:(x[0:7],1)).reduceByKey(add)
     yearmonth_sort = counts.sortBy(lambda x: x[0]).collect()
