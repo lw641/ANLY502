@@ -27,6 +27,9 @@ if __name__ == "__main__":
     ##
 
     sc     = SparkContext( appName="Wikipedia Count" )
+    lines = sc.textFile(infile)
+    counts = lines.map(lambda line: line.split('\t')[2]).map(lambda x:(x[0:7],1)).reduceByKey(add)
+    yearmonth_sort = counts.sortBy(lambda x: x[0]).collect()
 
     ## YOUR CODE GOES HERE
     ## PUT YOUR RESULTS IN counts
