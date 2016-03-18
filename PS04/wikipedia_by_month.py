@@ -36,7 +36,7 @@ if __name__ == "__main__":
 
 
     with open("wikipedia_by_month.txt","w") as fout:
-        for (date, count) in counts():
+        for (date, count) in yearmonth_sort:
             fout.write("{}\t{}\n".format(date,count))
     
     ## 
