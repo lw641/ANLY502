@@ -49,3 +49,40 @@ if __name__ == "__main__":
     ##
 
     sc.stop()
+
+#To plot now via local python////////////
+#!/usr/bin/env python
+
+from datetime import datetime, timedelta
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
+import matplotlib.cbook as cbook
+
+handle = open("wikipedia_by_month.txt")
+x,y = [],[]
+for l in handle:
+	x.append(''.join(l.split()[0].split('-')))
+	y.append(l.split()[1])
+
+z = []
+for i in x:
+	p=datetime(year=int(i[0:4]),month=int(i[4:6]),day = int(1))
+	z.append(p)
+	#print(p)
+
+#y = np.array(y)
+#print(p)
+#print(len(y))
+#print x
+
+#myplot = plt.hist(x, y)
+#exit(1)
+# add a 'best fit' line
+plt.plot(np.array(z), np.array(y))
+plt.xlabel('Date')
+plt.ylabel('Count')
+#plt.title(r'Histogram of IQ: $\mu=100$, $\sigma=15$')
+
+#plt.subplots_adjust(left=0.15)
+plt.show()
