@@ -50,7 +50,7 @@ if __name__ == "__main__":
 
     sc.stop()
 
-#To plot now via local python////////////
+#/////////////To plot now via local python////////////
 #!/usr/bin/env python
 
 from datetime import datetime, timedelta
