@@ -17,10 +17,10 @@ if __name__ == "__main__":
     map2 = myfile2.zipWithIndex().filter(lambda x:x[1]>0).map(lambda x:x[0]).map(lambda line: line.split(',')).map(lambda x: (x[0],x))
   
    
-    top40counts = counts.sortBy(lambda x: x[1], ascending=False).take(40)
+    geo40 = counts.sortBy(lambda x: x[1], ascending=False).take(40)
 
-    with open("wordcount_shakespeare4.txt","w") as fout:
-        for (word, count) in top40counts:
+    with open("forensicswiki_bycountry.txt","w") as fout:
+        for (word, count) in geo40:
             fout.write("{}\t{}\n".format(word,count))
     
     ## 
