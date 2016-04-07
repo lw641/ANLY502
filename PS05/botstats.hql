@@ -63,5 +63,6 @@ substr(date,1,10),
 	from bot_logs
 	group by substr(date,1,10);
 
-select yearmonth,botcount,nonbotcount from bot_stats order by yearmonth;
+select yearmonth,count,botcount,nonbotcount,size,botsize,nonbotsize from bot_stats order by yearmonth;
+
 
