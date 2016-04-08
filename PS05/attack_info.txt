@@ -50,10 +50,22 @@ Row(datetime=u'2012-09-07T06:18:38-07:00'),
 Row(datetime=u'2012-09-07T06:18:40-07:00')]
 
 3.
+[Row(request=u'GET /wiki/Tools:Memory_Imaging1111111111111_UNION_SELECT_CHAR(45,120,49,45,81,45),CHAR(45,120,50,45,81,45)_--_/* HTTP/1.0'), 
+Row(request=u'GET /index.php?title=Tools:Memory_Imaging1111111111111%20UNION%20SELECT%20CHAR(45,120,49,45,81,45),CHAR(45,120,50,45,81,45),CHAR(45,120,51,45,81,45),CHAR(45,120,52,45,81,45),CHAR(45,120,53,45,81,45),CHAR(45,120,54,45,81,45),CHAR(45,120,55,45,81,45),CHAR(45,120,56,45,81,45),CHAR(45,120,57,45,81,45),CHAR(45,120,49,48,45,81,45),CHAR(45,120,49,49,45,81,45)%20--%20%20/* HTTP/1.0'), 
+Row(request=u'GET /wiki/Tools:Memory_Imaging1111111111111%27_UNION_SELECT_CHAR(45,120,49,45,81,45),CHAR(45,120,50,45,81,45)_--_/*_order_by_%27as_/* HTTP/1.0')]
+
+4.(Optional Question)
+Yes there are other SQL attacks, and I use the keywords " select from" to identify.
+[Row(request=u'GET /ajax.php?do=quick_replay&t=7+union+select+1,2,3,concat(0x7a33726f31,username,0x0d0a,password,0x7a33726f32),5,6,username,8,9,10,11,12,13,14,15,16,17+from+user+where+userid=1-- HTTP/1.1'), 
+Row(request=u'GET /index.php?title=Tools:Memory_Imaging%20or%20(1,2)=(select*from(select%20name_const(CHAR(111,108,111,108,111,115,104,101,114),1),name_const(CHAR(111,108,111,108,111,115,104,101,114),1))a)%20--%20and%201%3D1 HTTP/1.0'), 
+Row(request=u'GET /wiki/Tools:Memory_Imaging_or_(1,2)%3D(select*from(select_name_const(CHAR(111,108,111,108,111,115,104,101,114),1),name_const(CHAR(111,108,111,108,111,115,104,101,114),1))a)_--_and_1%3D1 HTTP/1.0')]
+
 
 In case of query codes needed, I paste them as below. If they are not required, please ignore, thank you.
 1. sqlCtx.sql("select distinct(ipaddr) from logs").collect()
 2. sqlCtx.sql("select datetime from logs").collect()
-3. 
+3. sqlCtx.sql("select request from logs where ipaddr='92.50.158.21' and instr(request,'CHAR(45,120,49,50,45,81,45)')=0 group by request limit 3").collect()
+4. sqlCtx.sql("select request from logs where instr(request,'select')>0 and instr(request,'from')>0 limit 3").collect()
+
 
 
