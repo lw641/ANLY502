@@ -4,5 +4,56 @@ Find the logfile lines that contain this request and report:
 • Are there other attacks from the same IP addresses? (If there is more than 1, investigate 3 of them.) 
 
 Your answer goes here:
+1. [Row(ipaddr=u'92.50.158.21')], so the attack comes from the same address.
+2. 
+[Row(datetime=u'2012-09-07T06:17:05-07:00'), 
+Row(datetime=u'2012-09-07T06:17:06-07:00'), 
+Row(datetime=u'2012-09-07T06:17:08-07:00'), 
+Row(datetime=u'2012-09-07T06:17:09-07:00'), 
+Row(datetime=u'2012-09-07T06:17:10-07:00'), 
+Row(datetime=u'2012-09-07T06:17:11-07:00'), 
+Row(datetime=u'2012-09-07T06:17:12-07:00'), 
+Row(datetime=u'2012-09-07T06:17:13-07:00'), 
+Row(datetime=u'2012-09-07T06:17:14-07:00'), 
+Row(datetime=u'2012-09-07T06:17:16-07:00'), 
+Row(datetime=u'2012-09-07T06:17:17-07:00'), 
+Row(datetime=u'2012-09-07T06:17:21-07:00'), 
+Row(datetime=u'2012-09-07T06:17:23-07:00'), 
+Row(datetime=u'2012-09-07T06:17:24-07:00'), 
+Row(datetime=u'2012-09-07T06:17:45-07:00'), 
+Row(datetime=u'2012-09-07T06:17:46-07:00'), 
+Row(datetime=u'2012-09-07T06:17:47-07:00'), 
+Row(datetime=u'2012-09-07T06:17:48-07:00'), 
+Row(datetime=u'2012-09-07T06:17:49-07:00'), 
+Row(datetime=u'2012-09-07T06:17:50-07:00'), 
+Row(datetime=u'2012-09-07T06:17:52-07:00'), 
+Row(datetime=u'2012-09-07T06:17:53-07:00'), 
+Row(datetime=u'2012-09-07T06:17:55-07:00'), 
+Row(datetime=u'2012-09-07T06:17:56-07:00'), 
+Row(datetime=u'2012-09-07T06:17:57-07:00'), 
+Row(datetime=u'2012-09-07T06:17:59-07:00'), 
+Row(datetime=u'2012-09-07T06:18:00-07:00'), 
+Row(datetime=u'2012-09-07T06:18:01-07:00'), 
+Row(datetime=u'2012-09-07T06:18:23-07:00'), 
+Row(datetime=u'2012-09-07T06:18:24-07:00'), 
+Row(datetime=u'2012-09-07T06:18:25-07:00'), 
+Row(datetime=u'2012-09-07T06:18:26-07:00'), 
+Row(datetime=u'2012-09-07T06:18:27-07:00'), 
+Row(datetime=u'2012-09-07T06:18:29-07:00'), 
+Row(datetime=u'2012-09-07T06:18:30-07:00'), 
+Row(datetime=u'2012-09-07T06:18:31-07:00'), 
+Row(datetime=u'2012-09-07T06:18:33-07:00'), 
+Row(datetime=u'2012-09-07T06:18:34-07:00'), 
+Row(datetime=u'2012-09-07T06:18:35-07:00'), 
+Row(datetime=u'2012-09-07T06:18:37-07:00'), 
+Row(datetime=u'2012-09-07T06:18:38-07:00'), 
+Row(datetime=u'2012-09-07T06:18:40-07:00')]
+
+3.
+
+In case of query codes needed, I paste them as below. If they are not required, please ignore, thank you.
+1. sqlCtx.sql("select distinct(ipaddr) from logs").collect()
+2. sqlCtx.sql("select datetime from logs").collect()
+3. 
 
 
